@@ -15,7 +15,7 @@ function show(req, res) {
   const searchedPost = posts.find((post) => post.id === parseInt(postId));
 
   if (!searchedPost) {
-    res.status(404).json({
+    return res.status(404).json({
       message: `Post ${postId} non trovato`,
       success: false,
     });
@@ -52,7 +52,6 @@ function destroy(req, res) {
   });
 
   console.log(filteredPosts);
-
   res.status(204).send();
 }
 
