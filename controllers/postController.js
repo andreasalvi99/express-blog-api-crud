@@ -1,8 +1,10 @@
-const posts = require("../data/posts.js");
+let posts = require("../data/posts.js");
 
 function index(req, res) {
+  const updatedPosts = posts.map(imgPathCrafter);
+
   res.json({
-    results: posts,
+    results: updatedPosts,
     message: "Lista dei post",
     success: true,
   });
@@ -10,7 +12,6 @@ function index(req, res) {
 
 function show(req, res) {
   const postId = req.params.id;
-
   const searchedPost = posts.find((post) => post.id === parseInt(postId));
 
   if (!searchedPost) {
@@ -21,7 +22,7 @@ function show(req, res) {
   }
 
   res.json({
-    results: searchedPost,
+    results: imgPathCrafter(searchedPost),
     message: `Ecco il post ${postId}`,
     success: true,
   });
@@ -50,6 +51,10 @@ function destroy(req, res) {
     message: `post ${postId} eliminato`,
     success: true,
   });
+}
+
+function imgPathCrafter(post) {
+  return { ...post, image: "http://localhost:3000/" + post.image };
 }
 
 module.exports = { index, show, store, update, destroy };
