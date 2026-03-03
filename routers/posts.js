@@ -1,16 +1,8 @@
 const express = require("express");
 const router = express.Router();
-//^ Array di elementi da restituire con la chiamata get
-const posts = require("../data/posts.js");
+const postController = require("../controllers/postController");
 
-//^ Index
-router.get("/", (req, res) => {
-  res.json({
-    results: posts,
-    message: "Lista dei post",
-    success: true,
-  });
-});
+router.get("/", postController.index);
 
 //^ Show
 router.get("/:id", (req, res) => {
