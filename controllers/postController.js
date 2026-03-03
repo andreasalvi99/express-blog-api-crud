@@ -53,11 +53,7 @@ function destroy(req, res) {
 
   console.log(filteredPosts);
 
-  res.status(204).json({
-    results: imgPathCrafter(filteredPosts),
-    message: `post ${postId} eliminato`,
-    success: true,
-  });
+  res.status(204).send();
 }
 
 function imgPathCrafter(post) {
