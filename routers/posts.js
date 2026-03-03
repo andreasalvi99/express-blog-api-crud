@@ -1,48 +1,7 @@
 const express = require("express");
 const router = express.Router();
 //^ Array di elementi da restituire con la chiamata get
-const posts = [
-  {
-    id: 1,
-    titolo: "Ciambellone",
-    contenuto:
-      "Un classico dolce da forno soffice e profumato, perfetto per colazione o merenda.",
-    img: "ciambellone.jpeg",
-    tags: ["dolci", "forno", "tradizione"],
-  },
-  {
-    id: 2,
-    titolo: "Cracker alla barbabietola",
-    contenuto:
-      "Cracker croccanti con barbabietola nell’impasto, ideali come snack o aperitivo.",
-    img: "cracker_barbabietola.jpeg",
-    tags: ["salato", "barbabietola", "snack"],
-  },
-  {
-    id: 3,
-    titolo: "Pane fritto dolce",
-    contenuto:
-      "Fette di pane fritte e zuccherate, una ricetta semplice e golosa della tradizione casalinga.",
-    img: "pane_fritto_dolce.jpeg",
-    tags: ["dolci", "fritto", "tradizione"],
-  },
-  {
-    id: 4,
-    titolo: "Pasta alla barbabietola",
-    contenuto:
-      "Pasta dal colore vivace preparata con barbabietola, dal gusto delicato e leggermente dolce.",
-    img: "pasta_barbabietola.jpeg",
-    tags: ["primo", "barbabietola", "pasta"],
-  },
-  {
-    id: 5,
-    titolo: "Torta paesana",
-    contenuto:
-      "Dolce rustico tipico della tradizione, preparato con ingredienti semplici e sapori autentici.",
-    img: "torta_paesana.jpeg",
-    tags: ["dolci", "tradizione", "rustico"],
-  },
-];
+const posts = require("../data/posts.js");
 
 //^ Index
 router.get("/", (req, res) => {
