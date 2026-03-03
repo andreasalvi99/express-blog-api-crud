@@ -51,7 +51,9 @@ function destroy(req, res) {
     return post.id !== parseInt(postId);
   });
 
-  res.json({
+  console.log(filteredPosts);
+
+  res.status(204).json({
     results: imgPathCrafter(filteredPosts),
     message: `post ${postId} eliminato`,
     success: true,
