@@ -47,7 +47,12 @@ function update(req, res) {
 function destroy(req, res) {
   const postId = req.params.id;
 
+  const filteredPosts = posts.filter((post) => {
+    return post.id !== parseInt(postId);
+  });
+
   res.json({
+    results: imgPathCrafter(filteredPosts),
     message: `post ${postId} eliminato`,
     success: true,
   });
