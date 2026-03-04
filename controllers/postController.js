@@ -29,9 +29,13 @@ function show(req, res) {
 }
 
 function store(req, res) {
-  const newPost = req.body;
+  const newPost = {
+    id: posts[posts.length - 1].id + 1,
+    title: req.body.title,
+    content: req.body.content,
+    image: req.body.image,
+  };
   console.log(newPost);
-
   posts.push(newPost);
 
   res.json({
