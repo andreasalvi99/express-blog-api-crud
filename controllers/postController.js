@@ -32,7 +32,10 @@ function store(req, res) {
   const newPost = req.body;
   console.log(newPost);
 
+  posts.push(newPost);
+
   res.json({
+    results: posts,
     message: `Creato nuovo post`,
     success: true,
   });
