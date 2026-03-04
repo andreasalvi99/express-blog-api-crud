@@ -1,13 +1,23 @@
 let posts = require("../data/posts.js");
 
 function index(req, res) {
-  const updatedPosts = posts.map(imgPathCrafter);
+  let updatedPosts = posts.map(imgPathCrafter);
+  const keyword = req.query.search;
 
-  res.json({
-    results: updatedPosts,
-    message: "Lista dei post",
-    success: true,
-  });
+  if (keyword) {
+    updatedPosts = updatedPosts.filter((post) => {
+      const normalizedKeyword = keyword.toLowerCase().trim();
+      const normalizedTitle = post.title.toLowerCase().trim();
+      return normalizedTitle.includes(normalizedKeyword);
+    });
+  }
+
+  if (keyword)
+    res.json({
+      results: updatedPosts,
+      message: "Lista dei post",
+      success: true,
+    });
 }
 
 function show(req, res) {
