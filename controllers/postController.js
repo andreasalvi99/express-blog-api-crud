@@ -73,14 +73,24 @@ function update(req, res) {
 }
 
 function destroy(req, res) {
-  const postId = req.params.id;
+  const postId = parseInt(req.params.id);
+
+  if (postId > posts[posts.length - 1].id + 1) {
+    return res.status(404).json({
+      message: `Post ${postId} non trovato`,
+      success: false,
+    });
+  }
 
   const filteredPosts = posts.filter((post) => {
-    return post.id !== parseInt(postId);
+    return post.id !== postId;
   });
 
   console.log(filteredPosts);
-  res.status(204).send();
+  res.json({
+    results: filteredPosts,
+    success: true,
+  });
 }
 
 function imgPathCrafter(post) {
