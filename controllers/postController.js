@@ -5,19 +5,23 @@ function index(req, res) {
   const keyword = req.query.search;
 
   if (keyword) {
+    const normalizedKeyword = keyword.toLowerCase().trim();
     updatedPosts = updatedPosts.filter((post) => {
-      const normalizedKeyword = keyword.toLowerCase().trim();
       const normalizedTitle = post.title.toLowerCase().trim();
-      return normalizedTitle.includes(normalizedKeyword);
+      return (
+        normalizedTitle.includes(normalizedKeyword) ||
+        post.tags.some((tag) => {
+          return tag.toLowerCase().trim().includes(normalizedKeyword);
+        })
+      );
     });
   }
 
-  if (keyword)
-    res.json({
-      results: updatedPosts,
-      message: "Lista dei post",
-      success: true,
-    });
+  res.json({
+    results: updatedPosts,
+    message: "Lista dei post",
+    success: true,
+  });
 }
 
 function show(req, res) {
