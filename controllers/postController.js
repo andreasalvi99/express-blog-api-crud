@@ -38,7 +38,7 @@ function store(req, res) {
   console.log(newPost);
   posts.push(newPost);
 
-  res.json({
+  res.status(201).json({
     results: posts,
     message: `Creato nuovo post`,
     success: true,
