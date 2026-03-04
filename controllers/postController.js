@@ -29,6 +29,9 @@ function show(req, res) {
 }
 
 function store(req, res) {
+  const newPost = req.body;
+  console.log(newPost);
+
   res.json({
     message: `Creato nuovo post`,
     success: true,

@@ -15,10 +15,8 @@ const postsRouter = require("./routers/posts");
 
 //^ Middle ware
 app.use(express.static("public"));
-
-app.use("/posts", postsRouter);
-
 app.use(express.json());
+app.use("/posts", postsRouter);
 
 //^ Chiamata alla homepage ("/"), restituisce oggetto json come response
 app.get("/", (req, res) => {
