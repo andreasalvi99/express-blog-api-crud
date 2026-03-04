@@ -40,7 +40,6 @@ function store(req, res) {
 
   res.status(201).json({
     results: posts,
-    message: `Creato nuovo post`,
     success: true,
   });
 }
@@ -48,8 +47,27 @@ function store(req, res) {
 function update(req, res) {
   const postId = req.params.id;
 
+  const modifiedPost = posts.find((post) => {
+    return post.id === parseInt(postId);
+  });
+
+  if (req.body.title) {
+    modifiedPost.title = req.body.title;
+  }
+  if (req.body.content) {
+    modifiedPost.content = req.body.content;
+  }
+  if (req.body.image) {
+    modifiedPost.image = req.body.image;
+  }
+  if (req.body.tags) {
+    modifiedPost.tags = req.body.tags;
+  }
+
+  console.log(modifiedPost);
+
   res.json({
-    message: `post ${postId} modificato interamente`,
+    results: posts,
     success: true,
   });
 }
