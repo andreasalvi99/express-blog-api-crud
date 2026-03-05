@@ -3,7 +3,8 @@ const app = express();
 const port = 3000;
 const appUrl = `http://localhost:${port}`;
 const postsRouter = require("./routers/posts");
-const NotFoundMiddleware = require("./middlewares/NotFound");
+const notFoundMiddleware = require("./middlewares/NotFound");
+const loadingMiddleware = require("./middlewares/Loading");
 
 //^ Middlewares
 app.use(express.static("public"));
@@ -18,8 +19,11 @@ app.get("/", (req, res) => {
   });
 });
 
+//^ Errors
+app.use(loadingMiddleware);
+
 //^ Not found
-app.use(NotFoundMiddleware);
+app.use(notFoundMiddleware);
 
 app.listen(port, () => {
   console.log(`Server online on ${appUrl}`);
