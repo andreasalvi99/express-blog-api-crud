@@ -4,7 +4,7 @@ const port = 3000;
 const appUrl = `http://localhost:${port}`;
 const postsRouter = require("./routers/posts");
 const notFoundMiddleware = require("./middlewares/NotFound");
-const loadingMiddleware = require("./middlewares/Loading");
+const loadingMiddleware = require("./middlewares/loading");
 
 //^ Middlewares
 app.use(express.static("public"));
